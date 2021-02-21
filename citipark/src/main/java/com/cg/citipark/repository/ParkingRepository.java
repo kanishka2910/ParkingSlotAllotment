@@ -12,13 +12,14 @@ import com.cg.citipark.beans.ParkingSlots;
 
 public interface ParkingRepository extends JpaRepository<ParkingSlots, Long> {
 	
-	 //@Query("select s from ParkingSlots s where s.parkingDate = :parkingDate and s.parkingTime = :parkingTime")
+	 /* Query to fetch data base on Date and Time*/
+	
 	@Query("from ParkingSlots where parkingDate =:pDate and parkingTime =:pTime")
 	 List<ParkingSlots> findSlotsforDateandTime(@Param("pDate") LocalDate parkingDate,
              @Param("pTime") String parkingTime);
 	
-	/*@Query("from ParkingSlots where parkingPremise =: premise")
-	List<ParkingSlots> findParkingSlotsByPremise(@Param("premise") ParkingPremise parkingPremise);*/
+	
+	/* Query to fetch data base on Parking Floor Id*/
 	
 	@Query("from ParkingSlots where parking_floor_parking_floor_id =:pId")
 	List<ParkingSlots> findByFloor(@Param("pId") int parkingFloorId);
