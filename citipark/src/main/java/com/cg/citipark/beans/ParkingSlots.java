@@ -62,6 +62,12 @@ public class ParkingSlots {
 	public Vehicle getVehicle() {
 		return vehicle;
 	}
+	public ParkingFloor getParkingFloor() {
+		return parkingFloor;
+	}
+	public void setParkingFloor(ParkingFloor parkingFloor) {
+		this.parkingFloor = parkingFloor;
+	}
 	@Override
 	public String toString() {
 		return "ParkingSlots [parkingSlotId=" + parkingSlotId + ", vehicle=" + vehicle + ", parkingDate=" + parkingDate
@@ -93,12 +99,7 @@ public class ParkingSlots {
 		this.bookingDate=LocalDate.now();
 		
 	}
-	public ParkingFloor getParkingFloor() {
-		return parkingFloor;
-	}
-	public void setParkingFloor(ParkingFloor parkingFloor) {
-		this.parkingFloor = parkingFloor;
-	}
+	
 	
 	
 }
