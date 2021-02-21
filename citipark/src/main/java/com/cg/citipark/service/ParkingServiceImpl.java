@@ -18,6 +18,9 @@ public class ParkingServiceImpl  implements ParkingService{
 	@Autowired
 	private ParkingRepository parkingRepository;
 	
+	/*
+	Book Slot
+	*/
 	@Override
 	public ParkingSlots addSlot(ParkingSlots parkingSlots) 
 	{
@@ -29,7 +32,9 @@ public class ParkingServiceImpl  implements ParkingService{
 		else
 			throw new ParkingSlotNotAvailableException("Parking Slot not available");
 	}
-	
+	/*
+	Delete Slot
+	*/
 	@Override
 	public ParkingSlots deleteSlot(Long parkingSlotId)   {
 		Optional<ParkingSlots> rep = parkingRepository.findById(parkingSlotId);
@@ -41,7 +46,9 @@ public class ParkingServiceImpl  implements ParkingService{
 			return rep.get();
 		
 	}
-	
+	/*
+	Check Availability
+	*/
 	@Override
 	public boolean checkAvailability(LocalDate parkingDate, String parkingTime) 
 	{ 
@@ -56,6 +63,9 @@ public class ParkingServiceImpl  implements ParkingService{
 			throw new ParkingSlotNotAvailableException("Parking Slot not available");
 			
 	}
+	/*
+	Get Slots based on Parkinglot Id
+	*/
 	
 	@Override
 	public ParkingSlots getSlotById(long parkingSlotId) {
@@ -65,7 +75,9 @@ public class ParkingServiceImpl  implements ParkingService{
 		return optional.get();    
 	}
 	
-	
+	/*
+	Find All Slots
+	*/
 	@Override
 	public List<ParkingSlots> findAllSlots()
 	{
@@ -73,17 +85,15 @@ public class ParkingServiceImpl  implements ParkingService{
 		System.out.println("Slots are"+slots);
 		return slots;
 	}
-
+	/*
+	Get Slots based on Parking Floor Id
+	*/
 	@Override
 	public List<ParkingSlots> findSlotsByFloor(int parkingFloorId) {
 		
 		return parkingRepository.findByFloor(parkingFloorId);
 	}
 	
-	/*public List<ParkingSlots> findSlotsByPremise(ParkingPremise parkingPremise)
-	{
-		return parkingRepository.findParkingSlotsByPremise(parkingPremise);
-	}*/
 	
 	
 }
