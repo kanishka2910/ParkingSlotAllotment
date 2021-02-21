@@ -26,14 +26,18 @@ public class ParkingController {
 	ParkingService parkingService;
 	@Autowired
 	AdminService adminService;
-	
+	/*
+	Booking a Slot
+	*/
 	@PostMapping("/api/bookslot")
 	public ResponseEntity<?> bookSlot(@RequestBody ParkingSlots parkingSlot) 
 	{
 		parkingService.addSlot(parkingSlot);
 		return new ResponseEntity<ParkingSlots>(parkingSlot, HttpStatus.OK);
 	}
-	
+	/*
+	Deleting a Slot
+	*/
 	@DeleteMapping("/api/deleteSlotById/{parkingSlotId}")
 	public ResponseEntity<String> deleteReportById(@PathVariable Long parkingSlotId)  {
 		parkingService.deleteSlot(parkingSlotId);
@@ -46,7 +50,9 @@ public class ParkingController {
 		return new ResponseEntity<ParkingSlots>(parkingService.getSlotById(parkingSlotId), HttpStatus.OK);
 	}
 	
-
+	/*
+	Check Availability of slot
+	*/
 	@GetMapping("/api/checkAvailability/{parkingDate}/{parkingTime}")
 	public ResponseEntity<?> checkAvailability(@PathVariable  String parkingDate, @PathVariable String parkingTime) 
 	{
@@ -58,12 +64,17 @@ public class ParkingController {
 		
 		
 	}
+	/*
+	View all Slots
+	*/
 	@GetMapping("/api/veiw")
 	public ResponseEntity<List<ParkingSlots>> veiwAllSlots()
 	{
 		return new ResponseEntity<List<ParkingSlots>>(parkingService.findAllSlots(), HttpStatus.OK);
 	}
-	
+	/*
+	Find Slots based on parking floor Id
+	*/
 	@GetMapping("/api/find/floor/{parkingFloorId}")
 	public ResponseEntity<List<ParkingSlots>> getParkingSlotsByFloor(@PathVariable int parkingFloorId)
 	{
